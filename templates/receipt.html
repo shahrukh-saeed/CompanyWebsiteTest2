@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Receipt</title>
+    <style>
+
+      body {
+        font-family: monospace;
+        font-size: 16px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+      
+      h2 {
+        text-align: center;
+      }
+
+      #banner {
+        height: 360px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      #message {
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      #receipt {
+        border: solid;
+        border-width: 1px;
+        min-width: 100px;
+        max-width: 300px;
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 10px;
+        text-align: left;
+      }
+      
+    </style>
+  </head
+
+  <body>
+    <h1>The Phone Shop</h1>
+    <a href="/"><img id="banner" src="/static/banner.png"></a>
+
+    <div id="message">Thanks for your purchase! Please review your order details below.</div>
+
+    <div id="receipt">
+      <h2>Receipt</h2>
+
+      <div>Order #: {{ order['order_num'] }}</div><br>
+      <div>Name: {{ order['name'] }}</div><br>
+      <div>Email: {{ order['email'] }}</div><br>
+      <div>Address: {{ order['address'] }}</div><br>
+      <div>Item: {{ order['product_name'] }}</div><br>
+      <div>Price: {{ order['price'] }}</div><br>
+
+    </div>
+  </body>
+</html>

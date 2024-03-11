@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Product Page</title>
+  <style>
+    body {
+      font-family: monospace;
+      font-size: 16px;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input {
+      margin: 10px;
+    }
+    
+    #banner {
+      height: 360px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    #product-section {
+      text-align: center;
+    }
+
+    #product-image {
+      height: 300px;
+      width: 300px;
+      object-fit: cover;
+      border: solid; 
+      border-color: black;
+      border-width: 1px;
+    }
+
+    #order-section {
+      text-align: center;
+      border: solid;
+      border-width: 1px;
+      min-width: 100px;
+      max-width: 300px;
+      margin: 0 auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+
+    #description {
+      text-align: left;
+      margin: 0 auto;
+      min-width: 300px;
+      max-width: 700px;
+      margin-bottom: 20px;
+    }
+
+    #buy-button {
+      font-family: monospace;
+      font-size: 23px;
+      background-color: #0b142e;
+      color: white;
+      border-radius: 20px;
+      margin: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>The Phone Shop</h1>
+  <a href="/"><img id="banner" src="/static/banner.png"></a>
+
+  <h2>{{ product['name'] }}</h2>
+
+  <!-- Product Section -->
+  <div id="product-section">
+
+    <img id="product-image" src={{ product['image'] }}>
+
+    <h3>{{ product['price'] }}</h3>
+
+    <h3>Description</h3>
+
+    <div id="description">
+      <p>{{ product['desc'] }}</p>
+    </div>
+
+  </div>
+
+    <!-- Order Section -->
+  <div id="order-section">
+    <h2>Order Now</h2>  
+
+    <!-- gets email and card number from user (+ info from product dictionary) to confirm order -->
+    <form method="post" action='/browse-products/product-page/receipt'>
+
+      <label for="name">Name</label><br>
+      <input name="name" type="text" required /><br>
+      
+      <label for="email">Email</label><br>
+      <input name="email" type="email" required /><br>
+
+      <label for="address">Address</label><br>
+      <input name="address" type="text" required /><br>
+      
+      <label for="card">Card Number</label><br>
+      <input name="card" type="number" required /><br>
+
+      <!-- hidden because input not from user -->
+      <input type="hidden" name="order_num" value="{{ range(100000, 9999999) |random }}"></input>
+      <input type="hidden" name="product_name" value="{{product['name']}}" />
+      <input type="hidden" name="price" value="{{product['price']}}" />
+
+      <input id="buy-button" type="submit" value="Buy"/>
+    </form>
+  </div>
+  
+</body>
+</html>
