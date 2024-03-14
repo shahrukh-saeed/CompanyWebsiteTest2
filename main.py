@@ -89,19 +89,10 @@ def product_page():
 def receipt():
   DATA = request.form.to_dict()
 
-  #could do ORDERS.append(DATA) but I wanted to change the order of the keys
-  #for readability
-  ORDERS.append({
-      'order_num': DATA['order_num'],
-      'name': DATA['name'],
-      'email': DATA['email'],
-      'address': DATA['address'],
-      'card': DATA['card'],
-      'product_name': DATA['product_name'],
-      'price': DATA['price']
-  })
+  #Add DATA to ORDERS list
+  ORDERS.append(DATA)
 
-  print(ORDERS)
+  print(ORDERS) #Check if ORDERS updated correctly
 
   return render_template("receipt.html", order=DATA)
 
